@@ -18,12 +18,15 @@ fn main() {
     let mut letters = HashMap::new();
 
     db.iter().for_each(|id| {
-        for ch in id.chars().into_iter() {
-            print!("{} ", ch);
+        for ch in id.chars() {
+            match letters.get(&ch) {
+                Some(mut x) => letters.insert(ch, x+1),
+                None => letters.insert(ch, 1),
+            };
         }
-
-        println!("");
     });
+
+    println!("{:?}", letters);
 
     // println!("\nDay1 result: {:?}", res); 
 }
